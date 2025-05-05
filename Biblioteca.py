@@ -8,12 +8,13 @@ def main():
 
     while True:
         
-        print('1 - Listar livros\n' 
-        '2 - Remover livros\n' 
-        '3 - Atualizar quantidade de livros\n' 
-        '4 - Registrar empréstimo\n' 
-        '5 - Exibir histórico de empréstimos\n'
-        '6 - Sair do programa')
+        print('1 - Adicionar livros\n'
+        '2 - Listar livros\n' 
+        '3 - Remover livros\n' 
+        '4 - Atualizar quantidade de livros\n' 
+        '5 - Registrar empréstimo\n' 
+        '6 - Exibir histórico de empréstimos\n'
+        '7 - Sair do programa')
 
         try:
             opcao = int(input("Digite o numero correspondente a opção desejada\n"))
@@ -23,47 +24,49 @@ def main():
             continue
 
         if opcao == 1:
-            listar_livros(livros)
+            registrar_livros(livros)
 
         elif opcao == 2:
-            remover_livros(livros)
+            listar_livros(livros)
 
         elif opcao == 3:
-            atualizar_quantidade(livros)
+            remover_livros(livros)
 
         elif opcao == 4:
-            registrar_emprestimo()
+            atualizar_quantidade(livros)
 
         elif opcao == 5:
-            exibir_historico_emprestimo()
+            registrar_emprestimo()
 
         elif opcao == 6:
+            exibir_historico_emprestimo()
+
+        elif opcao == 7:
             print("Finalizando programa.")
             return
 
         else:
             print("Opção inválida")
 
-def listar_livros():
+def registrar_livros():
     print("Teste")
     pass
 
-
+def listar_livros():
+    print("Teste")
+    pass
 
 def remover_livros():
     print("Teste")
     pass
 
-
 def atualizar_quantidade():
     print("Teste")
     pass
 
-
 def registrar_emprestimo():
     print("Teste")
     pass
-
 
 def exibir_historico_emprestimo():
     print("Teste")
