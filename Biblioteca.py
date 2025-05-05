@@ -69,10 +69,16 @@ def adicionar_livros(livros):
             if opcao == 1:
                 titulo = input("Digite o titulo do livro\n")
                 autor = input("Digite o nome do autor\n")
-                exemplares = input("Digite a quantidade de exemplares\n")
+                
+                try:
+                    exemplares = int(input("Digite a quantidade de exemplares\n"))
+                except ValueError:
+                    print("Erro. Apenas números são permitidos nos exemplares")
+                    continue
 
                 if titulo not in livros:
                     livros[titulo] = {"Autor": autor, "Exemplares": exemplares}
+                    print(f"o livro {titulo} foi adicionado com sucesso ao sistema!")
                 else:
                     print("Esse livro ja existe no sistema")
 
@@ -123,8 +129,47 @@ def listar_livros(livros):
             print("Opção indisponivel")
 
 def remover_livros(livros):
-    print("Teste")
-    pass
+    
+     while True:
+
+        print('1 - Remover livro\n'
+        '2 - Voltar ao menu principal')
+
+        try:
+            opcao = int(input("Digite a opção desejada\n"))
+        except ValueError:
+            print("Erro. Digite apenas numero")
+
+        while True:
+            if opcao == 1:
+                nome_livro = input("Digite o nome do livro que deseja remover\n")
+                if nome_livro in livros:
+                    livros.pop(nome_livro)
+                    print(f"O livro '{nome_livro}' foi removido com sucesso.")
+                else:
+                    print("Livro não encontrado.")
+
+            elif opcao == 2:
+                return
+            
+            else:
+                print("Opção indisponivel")
+
+            while True:
+
+                try:
+                    repetir = int(input("Deseja remover outro livro?\n1 - sim\n2 - não\n"))
+                except ValueError:
+                    print("Erro. Digite apenas numeros")
+
+                if repetir == 1:
+                    break
+
+                elif repetir == 2:
+                    return
+
+                else: 
+                    print("Opção inválida")
 
 def atualizar_quantidade(livros):
     print("Teste")
