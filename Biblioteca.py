@@ -24,7 +24,7 @@ def main():
             continue
 
         if opcao == 1:
-            registrar_livros(livros)
+            adicionar_livros(livros)
 
         elif opcao == 2:
             listar_livros(livros)
@@ -48,19 +48,62 @@ def main():
         else:
             print("Opção inválida")
 
-def registrar_livros():
+def adicionar_livros(livros):
+    
+    print("Você está no menu de adicionar livros")
+
+    while True:
+         
+        print("Digite a opção desejada")
+        print('1 - Adicionar livro\n'
+              '2 - Voltar ao menu principal')
+
+        try:
+            opcao = int(input())
+        except ValueError:
+            print("Erro. Digite apenas números")
+            continue
+
+        if opcao == 1:
+            titulo = input("Digite o titulo do livro\n")
+            autor = input("Digite o nome do autor\n")
+            exemplares = input("Digite a quantidade de exemplares\n")
+
+            if titulo not in livros:
+                livros[titulo] = {"Autor": autor, "Exemplares": exemplares}
+            else:
+                print("Esse livro ja existe no sistema")
+
+        elif opcao == 2:
+            return
+        
+        else:
+            print("Opção inválida")
+
+        while True:
+
+            try:
+                opcao = int(input("Deseja adicionar outro livro?\nDigite 1 para sim\nDigite 2 para voltar ao menu principal\n"))
+            except ValueError:
+                print("Erro. Digite apenas números")
+
+            if opcao == 1:
+                break
+
+            elif opcao ==2:
+                return
+            
+            else:
+                print("Opção inválida")
+
+def listar_livros(livros):
+    print(livros)
+
+def remover_livros(livros):
     print("Teste")
     pass
 
-def listar_livros():
-    print("Teste")
-    pass
-
-def remover_livros():
-    print("Teste")
-    pass
-
-def atualizar_quantidade():
+def atualizar_quantidade(livros):
     print("Teste")
     pass
 
@@ -71,7 +114,5 @@ def registrar_emprestimo():
 def exibir_historico_emprestimo():
     print("Teste")
     pass
-
-
 
 main()
