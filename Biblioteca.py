@@ -244,7 +244,7 @@ def atualizar_quantidade(livros):
                     print("Opção inválida")
 
 def registrar_emprestimo():
-    print("Teste")
+    print("Test")
     pass
 
 def exibir_historico_emprestimo():
