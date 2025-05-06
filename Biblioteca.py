@@ -11,7 +11,7 @@ def main():
         print('1 - Adicionar livros\n'
         '2 - Listar livros\n' 
         '3 - Remover livros\n' 
-        '4 - Atualizar quantidade de livros\n' 
+        '4 - Atualizar livros (Titulo,Autor,Exemplares)\n' 
         '5 - Registrar empréstimo\n' 
         '6 - Exibir histórico de empréstimos\n'
         '7 - Sair do programa')
@@ -172,8 +172,76 @@ def remover_livros(livros):
                     print("Opção inválida")
 
 def atualizar_quantidade(livros):
-    print("Teste")
-    pass
+     
+     print("Você está no menu de atualizar livros")
+     
+     while True:
+
+        print('1 - Mudar titulo\n'
+        '2 - Mudar nome do autor\n' 
+        '3 - Atualizar quantidade de exemplares\n' 
+        '4 - Voltar ao menu principal')
+
+        try:
+            opcao = int(input("Digite a opção desejada\n"))
+        except ValueError:
+            print("Erro. Digite apenas numero")
+
+        while True:
+
+            nome_livro = input("Digite o nome do livro que deseja atualizar\n")
+
+            if opcao == 1:
+                if nome_livro in livros:
+                    novo_nome = input("Digite o novo titulo\n")
+                    livros[novo_nome] = livros.pop(nome_livro)  
+                    print(f"O livro '{nome_livro}' foi atualizado com sucesso para '{novo_nome}'.")
+                else:
+                    print("Livro não encontrado.")
+
+            elif opcao == 2:
+                if nome_livro in livros:
+                    Autor = input("Digite o nome do autor\n")
+                    livros[nome_livro]["Autor"] = Autor
+                    print(f"O autor do '{nome_livro}' foi atualizado com sucesso.")
+                else:
+                    print("Livro não encontrado.")
+            
+            elif opcao == 3:
+                if nome_livro in livros:
+                    try:
+                        Exemplares = int(input("Digite a quantidade de exemplares\n"))
+                    except ValueError:
+                        print("Erro. Digite apenas numeros para a quantidade de exemplares")
+                        continue
+
+                    livros[nome_livro]["Exemplares"] = Exemplares
+                    print(f"A quantidade de exemplares do livro '{nome_livro}' foi atualizada com sucesso.")
+                else:
+                    print("Livro não encontrado.")
+
+            elif opcao == 4:
+                return
+
+            else:
+                print("Opção indisponivel")
+
+            while True:
+
+                try:
+                    repetir = int(input("Deseja atualizar outro livro?\n1 - Sim\n2 - Voltar ao menu principal\n"))
+                except ValueError:
+                    print("Erro. Digite apenas números")
+                    continue
+
+                if repetir == 1:
+                    break
+
+                elif repetir == 2:
+                    return
+                
+                else:
+                    print("Opção inválida")
 
 def registrar_emprestimo():
     print("Teste")
