@@ -309,5 +309,6 @@ def registrar_emprestimo(livros, emprestimo): #Quase tudo feito, falta testar e 
 
 def exibir_historico_emprestimo(livros, emprestimo): #Funciona perfeitamente, afinal, é só um print
     print(emprestimo)
+    pass
 
 main()
