@@ -1,4 +1,4 @@
-def main():
+def main(): #Funciona perfeitamente
 
     livros = {}
 
@@ -30,16 +30,16 @@ def main():
             listar_livros(livros)
 
         elif opcao == 3:
-            remover_livros(livros)
+            remover_livros(livros, emprestimo)
 
         elif opcao == 4:
             atualizar_quantidade(livros)
 
         elif opcao == 5:
-            registrar_emprestimo()
+            registrar_emprestimo(livros, emprestimo)
 
         elif opcao == 6:
-            exibir_historico_emprestimo()
+            exibir_historico_emprestimo(livros, emprestimo)
 
         elif opcao == 7:
             print("Finalizando programa.")
@@ -48,7 +48,7 @@ def main():
         else:
             print("Opção inválida")
 
-def adicionar_livros(livros):
+def adicionar_livros(livros): #Funciona perfeitamente, mas falta testar possiveis bugs
     
     print("Você está no menu de adicionar livros")
 
@@ -105,7 +105,7 @@ def adicionar_livros(livros):
                 else:
                     print("Opção inválida")
 
-def listar_livros(livros):
+def listar_livros(livros): #Funciona perfeitamente
     
     while True:
 
@@ -128,7 +128,7 @@ def listar_livros(livros):
         else:
             print("Opção indisponivel")
 
-def remover_livros(livros):
+def remover_livros(livros, emprestimo): #Funciona perfeitamente, mas falta testar possiveis bugs
     
      while True:
 
@@ -142,9 +142,10 @@ def remover_livros(livros):
 
         while True:
             if opcao == 1:
-                nome_livro = input("Digite o nome do livro que deseja remover\n")
+                nome_livro = input("Digite o nome do livro que deseja remover (Atenção, remover o livro apagara todas as entradas de emprestimo.)\n")
                 if nome_livro in livros:
                     livros.pop(nome_livro)
+                    emprestimo.pop(nome_livro)
                     print(f"O livro '{nome_livro}' foi removido com sucesso.")
                 else:
                     print("Livro não encontrado.")
@@ -171,7 +172,7 @@ def remover_livros(livros):
                 else: 
                     print("Opção inválida")
 
-def atualizar_quantidade(livros):
+def atualizar_quantidade(livros): #Funciona perfeitamente, mas falta testar possiveis bugs
      
      print("Você está no menu de atualizar livros")
      
@@ -243,12 +244,70 @@ def atualizar_quantidade(livros):
                 else:
                     print("Opção inválida")
 
-def registrar_emprestimo():
-    print("Test")
-    pass
+def registrar_emprestimo(livros, emprestimo): #Quase tudo feito, falta testar e adicionar o registro no dicionario "Emprestimo"
 
-def exibir_historico_emprestimo():
-    print("Teste")
-    pass
+    print("Você está no menu de empréstimos")
+    
+    while True:
+
+        print('Digite a opção desejada\n' \
+        '1 - Registrar empréstimo\n' \
+        '2 - Voltar ao menu principal')
+
+        try:
+            opcao = int(input())
+        except ValueError:
+            print("Erro. Digite apenas números")
+            continue
+
+        while True:
+
+            if opcao == 1:
+
+                titulo = input("Digite o nome do livro que deseja registrar um empréstimo\n")
+                if titulo in livros:
+                    try:  
+                        quantidade = int(input("Digite a quantidade de exemplares a serem emprestados\n"))
+                    except ValueError:
+                        print("Erro. Digite apenas numeros")
+                        continue
+
+                    if quantidade <= livros[titulo]["Exemplares"]:
+                        livros[titulo]["Exemplares"] -= quantidade
+                        print(f"Foram registrados {quantidade} empréstimos para o livro {titulo}")
+                        emprestimo[titulo] = {"Exemplares emprestados": quantidade}
+                        #Eu pensei em fazer assim, mas não funcionou. Só que eu tenho certeza que é algo por ai
+                        #emprestimo = livros
+                        #emprestimo[livros] = titulo
+                        #emprestimo[titulo] = livros
+                        #emprestimo = livros[titulo]
+                        
+                    else:
+                        print("Quantidade de exemplares insuficiente")
+
+            elif opcao == 2:
+                return
+
+            else:
+                print("Esse livro não existe no sistema")
+
+            while True:
+
+                try:
+                    repetir = int(input("Deseja registrar outro empréstimo?\n1 - Sim\n2 - Voltar ao menu principal\n"))
+                except ValueError:
+                    print("Erro. Digite apenas numeros")
+
+                if repetir == 1:
+                    break
+
+                elif repetir == 2:
+                    return
+                    
+                else:
+                    print("Opção indisponivel")
+
+def exibir_historico_emprestimo(livros, emprestimo): #Funciona perfeitamente, afinal, é só um print
+    print(emprestimo)
 
 main()
